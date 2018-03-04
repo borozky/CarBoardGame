@@ -4,8 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "(gdb) Launch",
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/CarBoard",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(gdb) Launch (Windows)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/CarBoard",
@@ -24,6 +37,6 @@
                     "ignoreFailures": true
                 }
             ]
-        }
+        },
     ]
 }
