@@ -11,8 +11,7 @@ My solution for RMIT Advanced Programming Techniques assignment 1. Written in AN
 - <code>cd</code> to this folder.
 - Compile <code>carboard.c</code> using <code>gcc -ansi -pedantic -Wall carboard.c -o carboard</code>.
 - Run the compiled output using <code>.\carboard</code>
-- One liner: &nbsp; <code>gcc -ansi -pedantic -Wall carboard.c -o carboard && .\carboard</code>
-- Powershell: &nbsp; <code>gcc -ansi -pedantic -Wall carboard.c -o carboard ; .\carboard</code>
+- One liner: &nbsp;<code>gcc -ansi -pedantic -Wall carboard.c -o carboard ; ./carboard</code>
 
 ### VSCode CodeRunner
 If you are using VSCode, you can use VSCode CodeRunner extension to run this project. 
