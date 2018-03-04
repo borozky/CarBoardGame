@@ -1,13 +1,11 @@
 {
-    "files.associations": {
-        "carboard.h": "c",
-        "helpers.h": "c",
-        "stdio.h": "c",
-        "string.h": "c",
-        "cstdio": "c",
-        "assert.h": "c"
-    },
+    "clang.executable": "clang",
     "code-runner.executorMap": {
-        "c": "cd $dir && gcc -ansi -pedantic -Wall *.c -o carboard && $dircarboard",
-    }
+        "c": "cd $dir && gcc -ansi -pedantic -Wall carboard.c -o CarBoard && ./CarBoard",
+    },
+    "C_Cpp.autocomplete": "Disabled",
+    "files.associations": {
+        "carboard.h": "c"
+    },
+    "code-runner.runInTerminal": true
 }
