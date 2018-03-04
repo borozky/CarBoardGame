@@ -8,12 +8,50 @@
 
 void initialisePlayer(Player * player, Position * position, Direction direction)
 {
-    /* TODO */
+    player->position.x = (*position).x;
+    player->position.y = (*position).y;
+    player->direction = direction;
 }
 
 void turnDirection(Player * player, TurnDirection turnDirection)
 {
-    /* TODO */
+    if (turnDirection == TURN_LEFT) {
+        switch (player->direction) {
+            case NORTH:
+                player->direction = WEST;
+                break;
+            case SOUTH:
+                player->direction = EAST;
+                break;
+            case EAST:
+                player->direction = NORTH;
+                break;
+            case WEST:
+                player->direction = SOUTH;
+                break;
+            default:
+                break;
+        }
+
+    } 
+    else if (turnDirection == TURN_RIGHT) {
+        switch (player->direction) {
+            case NORTH:
+                player->direction = EAST;
+                break;
+            case SOUTH:
+                player->direction = WEST;
+                break;
+            case EAST:
+                player->direction = SOUTH;
+                break;
+            case WEST:
+                player->direction = NORTH;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 Position getNextForwardPosition(const Player * player)

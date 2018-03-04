@@ -4,7 +4,8 @@
         "c": "cd $dir && gcc -ansi -pedantic -Wall *.c -o CarBoard && ./CarBoard",
     },
     "files.associations": {
-        "carboard.h": "c"
+        "carboard.h": "c",
+        "player.h": "c"
     },
     "C_Cpp.autocomplete": "Disabled",
     "code-runner.runInTerminal": true
