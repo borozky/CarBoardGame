@@ -58,8 +58,35 @@ void loadBoard(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
 
 Boolean placePlayer(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Position position)
 {
-    /* TODO */
+    int posX, posY, row = 0, col = 0;
+
+    posX = position.x;
+    posY = position.y;
+
+    /**
+     * Corners located at
+     * 
+     * (0, 0)
+     * (BOARD_WIDTH - 1 = 9, 0)
+     * (BOARD_WIDTH - 1 = 9, BOARD_HEIGHT - 1 = 9)
+     * (0, BOARD_HEIGHT - 1 = 9)
+     */
+    if (posX >= 0 && posY >= 0 && posX < BOARD_WIDTH && posY < BOARD_HEIGHT && board[posY][posX] == EMPTY) {
+
+        /* Remove the player from the board, then add the player again*/
+        for (row = 0; row < BOARD_HEIGHT; row++) {
+            for (col = 0; col < BOARD_WIDTH; col++) {
+                if (board[row][col] == PLAYER) {
+                    board[row][col] = EMPTY;
+                }
+            }
+        }
+        board[posY][posX] = PLAYER;
+        return TRUE;
+    }
+
     return FALSE;
+
 }
 
 PlayerMove movePlayerForward(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
