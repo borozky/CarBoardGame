@@ -6,5 +6,8 @@
         "string.h": "c",
         "cstdio": "c",
         "assert.h": "c"
+    },
+    "code-runner.executorMap": {
+        "c": "cd $dir && gcc -ansi -pedantic -Wall carboard.c -o carboard && $dircarboard",
     }
 }
