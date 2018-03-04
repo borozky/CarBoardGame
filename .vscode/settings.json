@@ -6,5 +6,6 @@
     "files.associations": {
         "carboard.h": "c"
     },
+    "C_Cpp.autocomplete": "Disabled",
     "code-runner.runInTerminal": true
 }
