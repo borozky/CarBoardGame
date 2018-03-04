@@ -40,4 +40,6 @@
  */
 void playGame();
 
+void displayGameInstructions();
+
 #endif

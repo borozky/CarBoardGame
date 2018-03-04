@@ -36,4 +36,6 @@ typedef enum boolean
  **/
 void readRestOfLine();
 
+int str_equals(const char *, const char *);
+
 #endif

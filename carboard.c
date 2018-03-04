@@ -9,14 +9,15 @@
 int main(void)
 {
     int choice = 0;
-    showMenu();
 
-    while (choice == 0 && choice <= 3) {
+    do {
+        showMenu();
         printf("Please enter your choice: ");
         scanf("%d", &choice);
 
         if (choice == 1) {
-            printf("You have chosen to play the game");
+            printf("You have chosen to play the game"); 
+            playGame();
             return EXIT_SUCCESS;
         }
 
@@ -30,12 +31,13 @@ int main(void)
             printf("You have chosen to quit");
             return EXIT_SUCCESS;
         }
-    }
+
+        printf("\nInvalid input\n");
+        choice = 0;
+
+    } while (choice < 1 || choice > 3);
 
     return EXIT_SUCCESS;
-        
-
-    
 }
 
 void showMenu() {
