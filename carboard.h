@@ -21,5 +21,6 @@
  * them when printing.
  */
 void showStudentInformation();
+void showMenu();
 
 #endif
