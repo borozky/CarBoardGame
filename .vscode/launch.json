@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/carboard.exe",
+            "program": "${workspaceFolder}/CarBoard",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -13,8 +13,8 @@
                 "-pedantic",
                 "-Wall",
                 "-o",
-                "carboard",
-                "carboard.c"
+                "CarBoard",
+                "*.c"
             ],
             "group": {
                 "kind": "build",

@@ -9,9 +9,9 @@ My solution for RMIT Advanced Programming Techniques assignment 1. Written in AN
 ### How to run
 - Make sure your machine has <code>gcc</code> installed and <var>configured</var> properly. Check gcc using <code>gcc --version</code>.
 - <code>cd</code> to this folder.
-- Compile <code>carboard.c</code> using <code>gcc -ansi -pedantic -Wall carboard.c -o carboard</code>.
-- Run the compiled output using <code>.\carboard</code>
-- One liner: &nbsp;<code>gcc -ansi -pedantic -Wall carboard.c -o carboard ; ./carboard</code>
+- Compile all .c files using <code>gcc -ansi -pedantic -Wall *.c -o CarBoard</code>.
+- Run the compiled output using <code>.\CarBoard</code>
+- One liner: &nbsp;<code>gcc -ansi -pedantic -Wall *.c -o CarBoard ; ./CarBoard</code>
 
 ### VSCode CodeRunner
 If you are using VSCode, you can use VSCode CodeRunner extension to run this project. 
