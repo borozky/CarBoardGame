@@ -18,18 +18,57 @@ void turnDirection(Player * player, TurnDirection turnDirection)
 
 Position getNextForwardPosition(const Player * player)
 {
-    /* TODO */
     Position position;
+    Direction direction = player->direction;
+    
+    int nextPosX = player->position.x;
+    int nextPosY = player->position.y;
+
+    switch (direction) {
+        case NORTH:
+            nextPosY -= 1;
+            break;
+        case EAST:
+            nextPosX += 1;
+            break;
+        case WEST:
+            nextPosX -= 1;
+            break;
+        case SOUTH:
+            nextPosY += 1;
+            break;
+        default:
+            break;
+    }
+
+    position.x = nextPosX;
+    position.y = nextPosY;
 
     return position;
 }
 
 void updatePosition(Player * player, Position position)
 {
-    /* TODO */
+    player->position.x = position.x;
+    player->position.y = position.y;
 }
 
 void displayDirection(Direction direction)
 {
-    /* TODO */
+    switch(direction) {
+        case NORTH:
+            printf(DIRECTION_ARROW_OUTPUT_NORTH);
+            break;
+        case SOUTH:
+            printf(DIRECTION_ARROW_OUTPUT_SOUTH);
+            break;
+        case EAST:
+            printf(DIRECTION_ARROW_OUTPUT_EAST);
+            break;
+        case WEST:
+            printf(DIRECTION_ARROW_OUTPUT_WEST);
+            break;
+        default:
+            break;
+    }
 }
