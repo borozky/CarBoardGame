@@ -1,6 +1,6 @@
 /******************************************************************************
-** Student name: 	...
-** Student number: 	...
+** Student name: 	Joshua Orozco
+** Student number: 	s3485376
 ** Course: 			Advanced Programming Techniques - S1 2018
 ******************************************************************************/
 
@@ -10,9 +10,9 @@
 #include "helpers.h"
 #include "game.h"
 
-#define STUDENT_NAME "XXX YYY"
-#define STUDENT_ID "s1234567"
-#define STUDENT_EMAIL "s1234567@student.rmit.edu.au"
+#define STUDENT_NAME "Joshua Orozco"
+#define STUDENT_ID "s3485376"
+#define STUDENT_EMAIL "s3485376@student.rmit.edu.au"
 
 /**
  * Main menu option 2 - show your student information as per the specification.

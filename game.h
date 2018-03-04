@@ -1,6 +1,6 @@
 /******************************************************************************
-** Student name: 	...
-** Student number: 	...
+** Student name: 	Joshua Orozco
+** Student number: 	s3485376
 ** Course: 			Advanced Programming Techniques - S1 2018
 ******************************************************************************/
 

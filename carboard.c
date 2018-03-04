@@ -1,6 +1,6 @@
 /******************************************************************************
-** Student name: 	...
-** Student number: 	...
+** Student name: 	Joshua Orozco
+** Student number: 	s3485376
 ** Course: 			Advanced Programming Techniques - S1 2018
 ******************************************************************************/
 
@@ -54,8 +54,8 @@ void showMenu() {
 void showStudentInformation()
 {
     printf("------------------------------------\n");
-    printf("Name: Joshua Orozco\n");
-    printf("No: s3485376\n");
-    printf("s3485376@student.rmit.edu.au\n");
+    printf("Name: %s\n", STUDENT_NAME);
+    printf("No: %s\n", STUDENT_ID);
+    printf("%s\n", STUDENT_EMAIL);
     printf("------------------------------------\n");
 }
