@@ -92,7 +92,31 @@ Boolean placePlayer(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Position position)
 PlayerMove movePlayerForward(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
                              Player * player)
 {
-    /* TODO */
+    if (player == NULL) {
+        return OUTSIDE_BOUNDS; /* TODO: Wat? */
+    }
+
+    int nextPosX = player->position.x;
+    int nextPosY = player->position.y;
+
+    Direction direction = player->direction;
+    switch (direction) {
+        case NORTH:
+            nextPosY -= 1;
+            break;
+        case EAST:
+            nextPosX += 1;
+            break;
+        case WEST:
+            nextPosX -= 1;
+            break;
+        case SOUTH:
+            nextPosY += 1;
+            break;
+        default:
+            return OUTSIDE_BOUNDS;
+    }
+
     return PLAYER_MOVED;
 }
 
