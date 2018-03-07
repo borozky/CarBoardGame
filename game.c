@@ -12,6 +12,10 @@ void playGame()
     int chosenBoardNumber = 0;
     Cell board[BOARD_HEIGHT][BOARD_WIDTH];
 
+    int playerPosX; /* 0 - 9 */
+    int playerPosY; /* 0 - 9 */
+    char playerDirection[5]; /* north, south, east, west */
+
     /* INSTRUCTIONS */
     displayGameInstructions();
     printf("\n");
@@ -41,26 +45,26 @@ void playGame()
 
     /* TODO: GAME LOOP */
     do {
-
         printf("Enter your choice: ");
-        gets(choice);
-        printf("Your input:%s\n", choice);
+        scanf("%s%d", choice, &chosenBoardNumber);
+        printf("\nYour input: %s\n", choice);
+        printf("\nChosen board number:%d\n", chosenBoardNumber);
 
-        if (chosenBoardNumber == 1 || chosenBoardNumber == 2) {
-            /* TODO: load and quit only allowed */
-        }
-        else {
-            /* TODO: rest of the commands becomes available */
+        if (strcmp("load", choice) == 0 && (chosenBoardNumber == 1 || chosenBoardNumber == 2)) {
+            if (chosenBoardNumber == 1) {
+                loadBoard(board, BOARD_1);
+            } 
+            else if (chosenBoardNumber == 2) {
+                loadBoard(board, BOARD_2);
+            }
+            displayBoard(board, NULL);
+            continue;
         }
 
-        if (strcmp("load 1", choice) == 0) {
-            loadBoard(board, BOARD_1);
-            displayBoard(board, NULL);
-        }
-        else if (strcmp("load 2", choice) == 0) {
-            loadBoard(board, BOARD_2);
-            displayBoard(board, NULL);
-        }
+
+        printf("Invalid input\n");
+
+
 
     } while (strcmp("quit", choice) != 0);
 
