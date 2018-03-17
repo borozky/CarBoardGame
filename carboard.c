@@ -5,6 +5,9 @@
 ******************************************************************************/
 
 #include "carboard.h"
+#define PLAY_GAME 1
+#define SHOW_STUDENT_INFO 2
+#define QUIT 3
 
 int main(void)
 {
@@ -15,27 +18,22 @@ int main(void)
         printf("Please enter your choice: ");
         scanf("%d", &choice);
 
-        if (choice == 1) {
-            printf("You have chosen to play the game"); 
-            playGame();
-            return EXIT_SUCCESS;
+        switch (choice) {
+            case PLAY_GAME:
+                playGame();
+                break;
+            case SHOW_STUDENT_INFO:
+                showStudentInformation();
+                break;
+            case QUIT:
+                return EXIT_SUCCESS;
+            default:
+                printf("\nInvalid input\n");
+                break;
         }
 
-        if (choice == 2) {
-            showStudentInformation();
-            choice = 0;
-            continue;
-        }
-
-        if (choice == 3) {
-            printf("You have chosen to quit");
-            return EXIT_SUCCESS;
-        }
-
-        printf("\nInvalid input\n");
         choice = 0;
-
-    } while (choice < 1 || choice > 3);
+    } while (1);
 
     return EXIT_SUCCESS;
 }
