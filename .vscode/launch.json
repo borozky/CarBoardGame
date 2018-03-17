@@ -21,7 +21,7 @@
             "name": "(gdb) Launch (Windows)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/CarBoard",
+            "program": "${workspaceFolder}/CarBoard.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

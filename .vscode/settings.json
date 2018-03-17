@@ -1,11 +1,13 @@
 {
-    "clang.executable": "clang",
     "code-runner.executorMap": {
         "c": "cd $dir && gcc -ansi -pedantic -Wall *.c -o CarBoard && ./CarBoard",
     },
     "files.associations": {
         "carboard.h": "c",
-        "player.h": "c"
+        "player.h": "c",
+        "string.h": "c",
+        "helpers.h": "c",
+        "game.h": "c"
     },
     "C_Cpp.autocomplete": "Disabled",
     "code-runner.runInTerminal": true
