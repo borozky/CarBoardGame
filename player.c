@@ -93,6 +93,7 @@ void updatePosition(Player * player, Position position)
 
 void displayDirection(Direction direction)
 {
+    /*
     switch(direction) {
         case NORTH:
             printf(DIRECTION_ARROW_OUTPUT_NORTH);
@@ -107,6 +108,24 @@ void displayDirection(Direction direction)
             printf(DIRECTION_ARROW_OUTPUT_WEST);
             break;
         default:
+            break;
+    }
+    */
+    switch(direction) {
+        case NORTH:
+            printf("^");
+            break;
+        case SOUTH:
+            printf("v");
+            break;
+        case EAST:
+            printf(">");
+            break;
+        case WEST:
+            printf("<");
+            break;
+        default:
+            printf("P");
             break;
     }
 }

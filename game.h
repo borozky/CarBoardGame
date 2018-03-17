@@ -41,5 +41,6 @@
 void playGame();
 
 void displayGameInstructions();
+void invalidInput();
 
 #endif
