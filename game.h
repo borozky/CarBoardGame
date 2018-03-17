@@ -42,5 +42,6 @@ void playGame();
 
 void displayGameInstructions();
 void invalidInput();
+void printAcceptableCommands(Boolean *boardLoaded, Boolean *playerLoaded);
 
 #endif

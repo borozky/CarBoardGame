@@ -11,43 +11,28 @@
 void playGame()
 {
     Cell board[BOARD_HEIGHT][BOARD_WIDTH];
-
     char input[32];
     char *commandToken;
     char *argsToken;
     char *arg;
-    
     int chosenBoardNumber = 0;
-
     int positionX = -1;
     int positionY = -1;
     Direction direction;
-
     Player player;
     Position position;
-
     Boolean boardLoaded = FALSE;
     Boolean playerLoaded = FALSE;
+
 
     /* INSTRUCTIONS */
     displayGameInstructions();
     printf("\n");
-    printf("Press enter to continue...\n");
-    readRestOfLine();
+    printf("Press enter to continue...\n\n");
 
 
+    /* GAME LOOP */
     initialiseBoard(board);
-
-    /*
-    loadBoard(board, BOARD_1);
-    displayBoard(board, NULL);
-
-    loadBoard(board, BOARD_2);
-    displayBoard(board, NULL);
-    */
-
-
-    /* TODO: GAME LOOP */
     do {
         if (boardLoaded == TRUE) {
             switch (chosenBoardNumber) {
@@ -68,6 +53,10 @@ void playGame()
         } else {
             displayBoard(board, NULL);
         }
+        
+        printf("\n");
+        printAcceptableCommands(&boardLoaded, &playerLoaded);
+        printf("\n");
 
         printf("Enter your choice: ");
         fgets(input, sizeof(input), stdin);
@@ -81,27 +70,27 @@ void playGame()
 
         argsToken = strtok(NULL, " ");
 
+
         /* load */
-        if (strcmp("load", commandToken) == 0) {
+        if (strcmp(COMMAND_LOAD, commandToken) == 0 && playerLoaded == FALSE) {
             boardLoaded = FALSE;
 
-            if (argsToken == NULL) {
-                invalidInput();
-                continue;
-            }
-
-            if (strcmp("1", argsToken) == 0) {
+            if (argsToken == NULL) {}
+            else if (strcmp("1", argsToken) == 0) {
                 chosenBoardNumber = 1;
                 boardLoaded = TRUE;
+                continue;
             } 
             else if (strcmp("2", argsToken) == 0) {
                 chosenBoardNumber = 2;
                 boardLoaded = TRUE;
+                continue;
             }
         }
 
+
         /* init */
-        if (strcmp("init", commandToken) == 0 && boardLoaded == TRUE) {
+        if (strcmp(COMMAND_INIT, commandToken) == 0 && boardLoaded == TRUE && playerLoaded == FALSE) {
             playerLoaded = FALSE;
 
             arg = strtok(argsToken, ",");
@@ -131,16 +120,16 @@ void playGame()
                 invalidInput();
                 continue;
             } 
-            else if (strcmp("north", arg) == 0) {
+            else if (strcmp(DIRECTION_NORTH, arg) == 0) {
                 direction = NORTH;
             } 
-            else if (strcmp("south", arg) == 0) {
+            else if (strcmp(DIRECTION_SOUTH, arg) == 0) {
                 direction = SOUTH;
             }
-            else if (strcmp("east", arg) == 0) {
+            else if (strcmp(DIRECTION_EAST, arg) == 0) {
                 direction = EAST;
             }
-            else if (strcmp("west", arg) == 0) {
+            else if (strcmp(DIRECTION_WEST, arg) == 0) {
                 direction = WEST;
             } 
             else {
@@ -158,7 +147,7 @@ void playGame()
             position.y = positionY;
             initialisePlayer(&player, &position, direction);
             if (placePlayer(board, player.position) == FALSE) {
-                printf("Cannot place player at (%d, %d)\n", player.position.x, player.position.y);
+                printf("ERROR: Cannot place player at (%d, %d)\n\n", player.position.x, player.position.y);
             } 
             else {
                 playerLoaded = TRUE;
@@ -168,31 +157,37 @@ void playGame()
         }
 
         if (playerLoaded == TRUE) {
-            if (strcmp("forward", commandToken) == 0 || strcmp("f", commandToken) == 0) {
+            if (strcmp(COMMAND_FORWARD, commandToken) == 0 || strcmp(COMMAND_FORWARD_SHORTCUT, commandToken) == 0) {
                 switch (movePlayerForward(board, &player)) {
                     case CELL_BLOCKED:
-                        printf("Cannot move player forward. Player is blocked.\n");
+                        printf("ERROR: Cannot move player forward. Player is blocked.\n\n");
                         break;
                     case OUTSIDE_BOUNDS:
-                        printf("Cannot move player outside of bounds\n");
+                        printf("ERROR: Cannot move player outside of bounds\n\n");
                         break;
                     case PLAYER_MOVED:
                         break;
                     default:
                         break;
                 }
+
+                continue;
             }
-            else if (strcmp("turn_left", commandToken) == 0 || strcmp("l", commandToken) == 0) {
+            else if (strcmp(COMMAND_TURN_LEFT, commandToken) == 0 || strcmp(COMMAND_TURN_LEFT_SHORTCUT, commandToken) == 0) {
                 turnDirection(&player, TURN_LEFT);
+                continue;
             }
-            else if (strcmp("turn_right", commandToken) == 0 || strcmp("r", commandToken) == 0) {
+            else if (strcmp(COMMAND_TURN_RIGHT, commandToken) == 0 || strcmp(COMMAND_TURN_RIGHT_SHORTCUT, commandToken) == 0) {
                 turnDirection(&player, TURN_RIGHT);
+                continue;
             }
         }
 
-        if (strcmp("quit", commandToken) == 0) {
+        if (strcmp(COMMAND_QUIT, commandToken) == 0) {
             break;
         }
+
+        invalidInput();
 
     } while (TRUE);
 
@@ -202,18 +197,40 @@ void playGame()
 
 void displayGameInstructions() {
     printf("You can use the following commands to play the game\n");
-    printf("load <g>\n");
+    printf("%s <g>\n", COMMAND_LOAD);
     printf("\tg: number of the game board to load\n");
-    printf("init <x>, <y>, <direction>\n");
+    printf("%s <x>, <y>, <direction>\n", COMMAND_INIT);
     printf("\tx: horizontal position of the car on the board (between 0 & 9)\n");
     printf("\ty: vertical position of the car on the board (between 0 & 9)\n");
-    printf("\tdirection: direction of the car's movement (north, east, south, west)\n");
-    printf("forward (or f)\n");
-    printf("turn_left (or l)\n");
-    printf("turn_right (or r)\n");
-    printf("quit\n");
+    printf("\tdirection: direction of the car's movement (%s, %s, %s, %s)\n", DIRECTION_NORTH, DIRECTION_SOUTH, DIRECTION_EAST, DIRECTION_WEST);
+    printf("%s (or %s)\n", COMMAND_FORWARD, COMMAND_FORWARD_SHORTCUT);
+    printf("%s (or %s)\n", COMMAND_TURN_LEFT, COMMAND_TURN_LEFT_SHORTCUT);
+    printf("%s (or %s)\n", COMMAND_TURN_RIGHT, COMMAND_TURN_RIGHT_SHORTCUT);
+    printf("%s\n", COMMAND_QUIT);
 }
 
 void invalidInput() {
-    printf("Invalid input\n");
+    printf("\nERROR: Invalid input\n\n");
+}
+
+void printAcceptableCommands(Boolean *boardLoaded, Boolean *playerLoaded) {
+    if (*boardLoaded == TRUE && *playerLoaded == TRUE) {
+        printf("At this stage of the program, only 4 commands are acceptable:\n");
+        printf("forward (or f)\n");
+        printf("turn_left (or l)\n");
+        printf("turn_right (or r)\n");
+        printf("quit\n");
+    } 
+    else if (*boardLoaded == FALSE){
+        printf("At this stage of the program, only two commands are acceptable:\n");
+        printf("load <g>\n");
+        printf("quit\n");
+    }
+    else if (*boardLoaded == TRUE && *playerLoaded == FALSE) {
+        printf("At this stage of the program, only three commands are acceptable:\n");
+        printf("load <g>\n");
+        printf("init <x>,<y>,<direction>\n");
+        printf("quit\n");
+    }
+
 }
