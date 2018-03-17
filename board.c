@@ -94,12 +94,20 @@ PlayerMove movePlayerForward(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
                              Player * player)
 {
     if (player == NULL) {
-        return OUTSIDE_BOUNDS; /* TODO: Wat? */
+        return OUTSIDE_BOUNDS; /* WHAT? */
     }
 
     Position nextPosition = getNextForwardPosition(player);
-    placePlayer(board, nextPosition);
+    if (nextPosition.x < 0 || nextPosition.x > 9 || nextPosition.y < 0 || nextPosition.y > 9) {
+        return OUTSIDE_BOUNDS;
+    }
 
+    if (board[nextPosition.y][nextPosition.x] == BLOCKED) {
+        return CELL_BLOCKED;
+    }
+
+    player->position.x = nextPosition.x;
+    player->position.y = nextPosition.y;
     return PLAYER_MOVED;
 }
 
@@ -126,7 +134,7 @@ void displayBoard(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Player * player)
                 printf("*");
             }
             else if (posX > -1 && posY > -1 && posX == col && posY == row) {
-                printf("P");
+                displayDirection(player->direction);
             }
             else if (board[row][col] == EMPTY) {
                 printf(" ");
