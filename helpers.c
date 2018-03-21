@@ -15,8 +15,3 @@ void readRestOfLine()
     /* Reset the error status of the stream. */
     clearerr(stdin);
 }
-
-int str_equals(const char *str1, const char *str2) {
-    int result = strcmp(str1, str2);
-    return (result == 0);
-}

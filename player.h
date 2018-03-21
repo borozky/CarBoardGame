@@ -39,10 +39,14 @@ typedef struct player
 /**
  * Some predefined strings that should print out arrows on the terminal...
  */
-#define DIRECTION_ARROW_OUTPUT_NORTH "\xe2\x86\x91"
+/* #define DIRECTION_ARROW_OUTPUT_NORTH "\xe2\x86\x91"
 #define DIRECTION_ARROW_OUTPUT_EAST "\xe2\x86\x92"
 #define DIRECTION_ARROW_OUTPUT_SOUTH "\xe2\x86\x93"
-#define DIRECTION_ARROW_OUTPUT_WEST "\xe2\x86\x90"
+#define DIRECTION_ARROW_OUTPUT_WEST "\xe2\x86\x90" */
+#define DIRECTION_ARROW_OUTPUT_NORTH "^"
+#define DIRECTION_ARROW_OUTPUT_EAST ">"
+#define DIRECTION_ARROW_OUTPUT_SOUTH "v"
+#define DIRECTION_ARROW_OUTPUT_WEST "<"
 
 /**
  * Initialise the player - set the position, direction to the provided values

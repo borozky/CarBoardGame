@@ -6,15 +6,19 @@
 
 #include "player.h"
 
+
 void initialisePlayer(Player * player, Position * position, Direction direction)
 {
+    /* set players position and direction */
     player->position.x = (*position).x;
     player->position.y = (*position).y;
     player->direction = direction;
 }
 
+
 void turnDirection(Player * player, TurnDirection turnDirection)
 {
+    /* turn left */
     if (turnDirection == TURN_LEFT) {
         switch (player->direction) {
             case NORTH:
@@ -32,8 +36,9 @@ void turnDirection(Player * player, TurnDirection turnDirection)
             default:
                 break;
         }
-
     } 
+
+    /* turn right */
     else if (turnDirection == TURN_RIGHT) {
         switch (player->direction) {
             case NORTH:
@@ -54,6 +59,7 @@ void turnDirection(Player * player, TurnDirection turnDirection)
     }
 }
 
+
 Position getNextForwardPosition(const Player * player)
 {
     Position position;
@@ -62,6 +68,7 @@ Position getNextForwardPosition(const Player * player)
     int nextPosX = player->position.x;
     int nextPosY = player->position.y;
 
+    /* change position by 1 column/row */
     switch (direction) {
         case NORTH:
             nextPosY -= 1;
@@ -85,15 +92,16 @@ Position getNextForwardPosition(const Player * player)
     return position;
 }
 
+
 void updatePosition(Player * player, Position position)
 {
     player->position.x = position.x;
     player->position.y = position.y;
 }
 
+
 void displayDirection(Direction direction)
 {
-    /*
     switch(direction) {
         case NORTH:
             printf(DIRECTION_ARROW_OUTPUT_NORTH);
@@ -108,24 +116,6 @@ void displayDirection(Direction direction)
             printf(DIRECTION_ARROW_OUTPUT_WEST);
             break;
         default:
-            break;
-    }
-    */
-    switch(direction) {
-        case NORTH:
-            printf("^");
-            break;
-        case SOUTH:
-            printf("v");
-            break;
-        case EAST:
-            printf(">");
-            break;
-        case WEST:
-            printf("<");
-            break;
-        default:
-            printf("P");
             break;
     }
 }
