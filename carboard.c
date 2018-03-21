@@ -18,6 +18,10 @@ int main(void)
         printf("Please enter your choice: ");
         scanf("%d", &choice);
 
+        /* scanf() above will cause infinite loop.  */
+        readRestOfLine(); 
+
+
         switch (choice) {
             case PLAY_GAME:
                 playGame();
@@ -33,6 +37,7 @@ int main(void)
         }
 
         choice = 0;
+
     } while (1);
 
     return EXIT_SUCCESS;
