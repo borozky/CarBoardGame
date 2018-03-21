@@ -38,6 +38,7 @@ void initialiseBoard(Cell board[BOARD_HEIGHT][BOARD_WIDTH])
 {
     int row = 0, col = 0;
 
+    /* all cells are empty */
     for (row = 0; row < BOARD_HEIGHT; row++) {
         for (col = 0; col < BOARD_WIDTH; col++) {
             board[row][col] = EMPTY;
@@ -49,6 +50,8 @@ void loadBoard(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
                Cell boardToLoad[BOARD_HEIGHT][BOARD_WIDTH])
 {
     int row = 0, col = 0;
+
+    /* basically clones the boardToLoad */
     for (row = 0; row < BOARD_HEIGHT; row++) {
         for (col = 0; col < BOARD_WIDTH; col++) {
             board[row][col] = boardToLoad[row][col];
@@ -73,7 +76,7 @@ Boolean placePlayer(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Position position)
      */
     if (posX >= 0 && posY >= 0 && posX < BOARD_WIDTH && posY < BOARD_HEIGHT && board[posY][posX] == EMPTY) {
 
-        /* Remove the player from the board, then add the player again*/
+        /* Remove the player from the board, then add the player again */
         for (row = 0; row < BOARD_HEIGHT; row++) {
             for (col = 0; col < BOARD_WIDTH; col++) {
                 if (board[row][col] == PLAYER) {
@@ -93,19 +96,31 @@ Boolean placePlayer(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Position position)
 PlayerMove movePlayerForward(Cell board[BOARD_HEIGHT][BOARD_WIDTH],
                              Player * player)
 {
+    Position nextPosition;
+    
     if (player == NULL) {
         return OUTSIDE_BOUNDS; /* WHAT? */
     }
 
-    Position nextPosition = getNextForwardPosition(player);
-    if (nextPosition.x < 0 || nextPosition.x > 9 || nextPosition.y < 0 || nextPosition.y > 9) {
+    /**
+     * OUTSIDE BOUNDS
+     * - nextPosition cannot be -1, -2, -3, ...
+     * - also nextPosition cannot be 10, 11, 12, ...
+     */
+    nextPosition = getNextForwardPosition(player);
+    if (nextPosition.x < 0 || 
+        nextPosition.x > BOARD_WIDTH - 1 || 
+        nextPosition.y < 0 || 
+        nextPosition.y > BOARD_HEIGHT - 1) {
         return OUTSIDE_BOUNDS;
     }
 
+    /* BLOCKED */
     if (board[nextPosition.y][nextPosition.x] == BLOCKED) {
         return CELL_BLOCKED;
     }
 
+    /* Update player's position */
     player->position.x = nextPosition.x;
     player->position.y = nextPosition.y;
     return PLAYER_MOVED;
@@ -121,14 +136,21 @@ void displayBoard(Cell board[BOARD_HEIGHT][BOARD_WIDTH], Player * player)
         posY = player->position.y;
     }
 
+    /* FIRST ROW */
     printf("| |");
     for (x = 0; x < BOARD_WIDTH; x++) {
         printf("%d|", x);
     }
     printf("\n");
 
+
+    /* Next 9 rows */
     for (row = 0; row < BOARD_HEIGHT; row++) {
+
+        /* FIRST COLUMN */
         printf("|%d|", row);
+
+        /* Next 9 columns */
         for (col = 0; col < BOARD_WIDTH; col++) {
             if (board[row][col] == BLOCKED) {
                 printf("*");

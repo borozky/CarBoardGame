@@ -18,9 +18,8 @@ int main(void)
         printf("Please enter your choice: ");
         scanf("%d", &choice);
 
-        /* scanf() above will cause infinite loop.  */
+        /* Breaks the infinite loop caused by scanf() above */
         readRestOfLine(); 
-
 
         switch (choice) {
             case PLAY_GAME:
