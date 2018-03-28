@@ -28,7 +28,9 @@ void playGame()
     /* INSTRUCTIONS */
     displayGameInstructions();
     printf("\n");
-    printf("Press enter to continue...\n\n");
+    printf("Press enter to continue...");
+    do {}
+    while (getchar() != '\n');
 
 
     /* GAME LOOP */
